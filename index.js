@@ -80,7 +80,7 @@ app.get('/artists/search', async (req, res) => {
 // View artist
 app.get('/artist/show/:id', async (req, res) => {
 	const id = req.params.id;
-
+	const albumsOffset = req.query.offset || 5;
 	try {
 		const accessToken = await getAccessToken();
 
@@ -112,6 +112,10 @@ app.get('/artist/show/:id', async (req, res) => {
 				headers: {
 					'Authorization': `Bearer ${accessToken}`
 				},
+				params: {
+					limit: 5,
+					offset: albumsOffset
+				}
 
 			})
 
@@ -119,7 +123,8 @@ app.get('/artist/show/:id', async (req, res) => {
 		res.render('show-artist', {
 		 	artist: artistResponse.data.artists[0],
 		 	topTracks: topTracks.data,
-		 	albums: albums.data
+		 	albums: albums.data,
+		 	id: id
 		});
 
 	} catch (error) {

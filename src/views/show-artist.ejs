@@ -38,17 +38,16 @@
                             <%= track.album.name %>
                         </span>
                         <span class='block'>
-                        	<%= track.album.album_type %>
+                            <%= track.album.album_type %>
                         </span>
                         <% if(track.album.preview_url) { %>
                         <audio controls>
-						    <source src="<%= track.album.preview_url %>" type="audio/mpeg">
-						    Your browser does not support the audio element.
-						</audio>
-						<% } else {  %>
-							<span class='italic text-sm text-[#fb4934]'>No audio preview available.</span>
-						<% } %>
-
+                            <source src="<%= track.album.preview_url %>" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <% } else {  %>
+                        <span class='italic text-sm text-[#fb4934]'>No audio preview available.</span>
+                        <% } %>
                     </span>
                 </div>
             </div>
@@ -61,22 +60,34 @@
         <!-- If we need scrollbar -->
         <div class="swiper-scrollbar"></div>
     </div>
-         <!-- Albums  -->
-	<h1 class='text-[#b8bb26] mt-4 font-bold text-4xl'>
+    <!-- Albums  -->
+    <h1 class='text-[#b8bb26] mt-4 font-bold text-4xl'>
         Albums
     </h1>
     <div class='flex flex-col flex-wrap gap-4 p-6 '>
-    <% albums.items.forEach((album) => { %>
-    	<div class='flex items-center text-white flex-row gap-4 shadow-sm rounded p-4' style='background-color:#3c3836;'>
-    		<img class='w-[150px] rounded'src="<%= album.images[0].url %>" alt='album'>
-    		<div class='flex flex-col'>
-    			<span class="break-all"><%= album.name %></span>
-    			<span><strong><%= album.total_tracks %></strong> Total tracks</span>
-    			<span>Release date - <strong><%= album.release_date %></strong></span>
-    		</div>
-    	</div>
-
-    <% }) %>
+        <% albums.items.forEach((album) => { %>
+        <div class='flex items-center text-white flex-row gap-4 shadow-sm rounded p-4' style='background-color:#3c3836;'>
+            <img class='w-[150px] rounded' src="<%= album.images[0].url %>" alt='album'>
+            <div class='flex flex-col'>
+                <span class="break-all">
+                    <%= album.name %></span>
+                <span><strong>
+                        <%= album.total_tracks %></strong> Total tracks</span>
+                <span>Release date - <strong>
+                        <%= album.release_date %></strong></span>
+            </div>
+        </div>
+        <% }) %>
+        <!-- Pagination -->
+        <div class='flex flex-row gap-2'>
+            <% if (albums.previous) { %>
+            <a href="/artist/show/<%= id %>?offset=<%= albums.offset - albums.limit %>" class='text-white p-3' style='background-color:#3c3836;'>
+                Prev
+            </a>
+            <% } %>
+            <a href="/artist/show/<%= id %>?offset=<%= albums.offset + albums.limit %>" class='text-white p-3' style='background-color:#3c3836;'>
+                Next
+            </a>
+        </div>
     </div>
-
 </div>
