@@ -106,10 +106,20 @@ app.get('/artist/show/:id', async (req, res) => {
 				}
 			})
 
+		// Fetching artist's albums
+		const albums = await axios.get(
+			`https://api.spotify.com/v1/artists/${id}/albums`, {
+				headers: {
+					'Authorization': `Bearer ${accessToken}`
+				},
+
+			})
+
 
 		res.render('show-artist', {
 		 	artist: artistResponse.data.artists[0],
-		 	topTracks: topTracks.data
+		 	topTracks: topTracks.data,
+		 	albums: albums.data
 		});
 
 	} catch (error) {

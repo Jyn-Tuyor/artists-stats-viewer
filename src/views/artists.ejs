@@ -8,7 +8,7 @@
                 </button>
             </div>
         </form>
-        <span class='text-sm'>Searched: <strong class='underline'>
+        <span class='text-sm'>Artists found for  <strong class='underline'>
                 <%= query %></strong></span>
         <span class='text-sm'>Total: <strong class=''>
                 <%= artists.total %></strong></span>
@@ -23,7 +23,7 @@
                         <h2 class="text-xl mb-4 text-[#ebdbb2]">
                             <%= artist.name %>
                         </h2>
-                        <a href="/artist/show/<%= artist.id %>" class="album-button">View Albums</a>
+                        <a href="/artist/show/<%= artist.id %>" class="album-button">View</a>
                     </div>
                 </div>
                </div>
@@ -31,11 +31,11 @@
                 <!-- Pagination -->
                 <div class='flex flex-row gap-2'>
                     <% if (artists.previous) { %>
-                    <a href="/artist?name=<%= query %>&offset=<%= artists.offset - artists.limit %>&limit=10" class='text-white p-3' style='background-color:#3c3836;'>
+                    <a href="/artists/search?name=<%= query %>&offset=<%= artists.offset - artists.limit %>&limit=10" class='text-white p-3' style='background-color:#3c3836;'>
                         Prev
                     </a>
                     <% } %>
-                    <a href="/artist?name=<%= query %>&offset=<%= artists.offset + artists.limit %>&limit=10" class='text-white p-3' style='background-color:#3c3836;'>
+                    <a href="/artists/search?name=<%= query %>&offset=<%= artists.offset + artists.limit %>&limit=10" class='text-white p-3' style='background-color:#3c3836;'>
                         Next
                     </a>
                 </div>
