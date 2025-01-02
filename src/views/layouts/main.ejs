@@ -6,30 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/output.css" rel="stylesheet">
     <link href="/custom.css" rel="stylesheet">
+    <!-- Swiper JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
 <body>
     <!-- Header -->
     <header>
-  <div class="container mx-auto">
-    <nav class="flex justify-between items-center p-4">
-      <a href="/" class="text-white font-bold">Artist Explorer</a>
-      <ul class="flex space-x-4">
-        <li>
-          <a href="https://github.com/jinnn888">
-            <img src="/images/github-mark-white.png" alt="GitHub" class="w-[22px]">
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
+        <div class="container mx-auto">
+            <nav class="flex justify-between items-center p-4">
+                <a href="/" class="text-white font-bold">Artist Explorer</a>
+                <ul class="flex space-x-4">
+                    <li>
+                        <a href="https://github.com/jinnn888">
+                            <img src="/images/github-mark-white.png" alt="GitHub" class="w-[22px]">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <!-- End of Header -->
     <!-- Main Content -->
     <main class=''>
-       <%- body  %>
+        <%- body  %>
     </main>
+    <script type="module">
+        import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+
+        const swiper = new Swiper('.swiper', {
+            direction: 'horizontal',
+            loop: true,
+
+            // If we need pagination
+            // pagination: {
+            //     el: '.swiper-pagination',
+            // },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+
+        })
+    </script>
 </body>
 
 </html>

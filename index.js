@@ -46,14 +46,13 @@ app.get('/', async(req, res) => {
 })
 
 // Search artist
-app.get('/artist', async (req, res) => {
+app.get('/artists/search', async (req, res) => {
 	const artistName = req.query.name;
 	const offset = req.query.offset || 0;
 	const limit = req.query.limit || 10;
 
 	try {
 		const accessToken = await getAccessToken();
-
 		const response = await axios.get(
 			`https://api.spotify.com/v1/search`, {
 			headers: {
@@ -78,7 +77,47 @@ app.get('/artist', async (req, res) => {
 	}
 });
 
+// View artist
+app.get('/artist/show/:id', async (req, res) => {
+	const id = req.params.id;
 
+	try {
+		const accessToken = await getAccessToken();
+
+		// Fetching info about the artist
+		const artistResponse = await axios.get(
+			`https://api.spotify.com/v1/artists`, {
+			headers: {
+				'Authorization': `Bearer ${accessToken}`,
+			},
+			params: {
+				ids: id,
+			},
+		});
+
+		// Fetching artist's top tracks
+		const topTracks = await axios.get(
+			`https://api.spotify.com/v1/artists/${id}/top-tracks`, {
+				headers: {
+					'Authorization': `Bearer ${accessToken}`
+				},
+				params: {
+					market: 'PH'
+				}
+			})
+
+
+		res.render('show-artist', {
+		 	artist: artistResponse.data.artists[0],
+		 	topTracks: topTracks.data
+		});
+
+	} catch (error) {
+		console.error('Error fetching artist data:', error.response?.data || error.message);
+		res.status(500).json({ error: 'Failed to fetch artist data' });
+	}
+
+});
 
 
 
