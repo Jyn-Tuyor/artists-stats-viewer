@@ -1,93 +1,91 @@
-<div class='w-full h-full flex flex-col gap-4 items-center p-6'>
+<div class="w-full flex sm:flex-row flex-wrap p-6">
+  <!-- Artist Profile -->
+  <div>
+    <img
+      src="<%= artist.images[0].url %>"
+      alt="Artist Image"
+      class="w-[150px]"
+    />
+    <div class="font-bold">
+      <h1 class="text-lg"><%= artist.name %></h1>
+    </div>
+    <!-- Genre -->
     <div>
-        <!-- Genre -->
-        <div class='w-full'>
-            <span class='text-[#b8bb26] mx-2'>
-                Genre:
-                <% artist.genres.forEach((genre) => { %>
-                <%= genre %>,
-                <% }) %>
-            </span>
-        </div>
-        <img src="<%= artist.images[0].url %>" alt="Artist Image" class='mb-4' />
-        <div class=' text-[#b8bb26] font-bold'>
-            <h1 class='text-4xl'>
-                <%= artist.name  %>
-            </h1>
-            <span class='text-3xl block'><small>Followers </small>
-                <%= artist.followers.total %></span>
-            <span class='text-3xl'><small>Popularity </small>
-                <%= artist.popularity %></span>
-        </div>
+      <span>
+        Genre: <% artist.genres.forEach((genre) => { %> <%= genre %>, <% }) %>
+      </span>
     </div>
-    <!-- Top Tracks  -->
-    <h1 class='text-[#b8bb26] mt-4 font-bold text-4xl'>
-        Top Tracks
-    </h1>
-    <!-- Slider main container -->
-    <div class="swiper">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper ">
-            <!-- Slides -->
-            <% topTracks.tracks.forEach((track) => { %>
-            <div class='swiper-slide'>
-                <img class='position-relative' src="<%= track.album.images[1].url %>">
-                <div class="text-container text-[#b8bb26]">
-                    <span class='position-absolute top-0 text-type capitalize'>
-                        <span class="track-name text-2xl block">
-                            <%= track.album.name %>
-                        </span>
-                        <span class='block'>
-                            <%= track.album.album_type %>
-                        </span>
-                        <% if(track.album.preview_url) { %>
-                        <audio controls>
-                            <source src="<%= track.album.preview_url %>" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <% } else {  %>
-                        <span class='italic text-sm text-[#fb4934]'>No audio preview available.</span>
-                        <% } %>
-                    </span>
-                </div>
-            </div>
-            <% }) %>
-        </div>
-        <!-- If we need pagination -->
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <!-- If we need scrollbar -->
-        <div class="swiper-scrollbar"></div>
+  </div>
+  <!-- End Artist Profile -->
+
+  <!-- Top Tracks -->
+  <div>
+ <div class="flex-1">
+        <h1 class="font-bold text-lg">Top Tracks</h1>
     </div>
-    <!-- Albums  -->
-    <h1 class='text-[#b8bb26] mt-4 font-bold text-4xl'>
+  <div class="mt-4 w-full flex flex-wrap gap-2">
+   
+    <% topTracks.tracks.forEach((track) => { %>
+    <div class="p-2 bg-gray-50 shadow-md hover:shadow-lg">
+      <img src="<%= track.album.images[1].url %>" class="w-[200px]" />
+      <div>
+        <span class="track-name text-lg block font-bold"> <%= track.album.name %> </span>
+        <span class="block"> <%= track.album.album_type %> </span>
+        <% if(track.album.preview_url) { %>
+        <audio controls>
+          <source src="<%= track.album.preview_url %>" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <% } else { %>
+        <span class="italic text-sm">No audio preview available.</span>
+        <% } %>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+  </div>
+
+  <!-- Albums -->
+  <!-- <h1 class='text-lg'>
         Albums
-    </h1>
-    <div class='flex flex-col flex-wrap gap-4 p-6 '>
-        <% albums.items.forEach((album) => { %>
-        <div class='flex items-center text-white flex-row gap-4 shadow-sm rounded p-4' style='background-color:#3c3836;'>
-            <img class='w-[150px] rounded' src="<%= album.images[0].url %>" alt='album'>
-            <div class='flex flex-col'>
-                <span class="break-all">
-                    <%= album.name %></span>
-                <span><strong>
-                        <%= album.total_tracks %></strong> Total tracks</span>
-                <span>Release date - <strong>
-                        <%= album.release_date %></strong></span>
-            </div>
-        </div>
-        <% }) %>
-        <!-- Pagination -->
-        <div class='flex flex-row gap-2'>
-            <% if (albums.previous) { %>
-            <a href="/artist/show/<%= id %>?offset=<%= albums.offset - albums.limit %>" class='text-white p-3' style='background-color:#3c3836;'>
-                Prev
-            </a>
-            <% } %>
-            <a href="/artist/show/<%= id %>?offset=<%= albums.offset + albums.limit %>" class='text-white p-3' style='background-color:#3c3836;'>
-                Next
-            </a>
-        </div>
+    </h1> -->
+    <div>
+<div>
+    <div class="flex-1">
+        <h1 class="font-bold text-lg">Albums</h1>
     </div>
+ <div class="mt-4 w-full flex flex-wrap gap-2 ">
+    
+    <% albums.items.forEach((album) => { %>
+    <div
+      class="bg-gray-50 flex items-center flex-row gap-4 shadow-sm  p-2 hover:shadow-lg"
+    >
+      <img class="w-[150px]" src="<%= album.images[0].url %>" alt="album" />
+      <div class="flex flex-col">
+        <span class="break-all"> <%= album.name %></span>
+        <span class="font-bold"><%= album.total_tracks %> Total tracks</span>
+        <span>Release date - <strong> <%= album.release_date %></strong></span>
+      </div>
+    </div>
+    <% }) %>
+</div>
+</div>
+    <!-- Pagination -->
+    <div class="flex flex-row gap-2 mt-4">
+      <% if (albums.previous) { %>
+      <a
+        href="/artist/show/<%= id %>?offset=<%= albums.offset - albums.limit %>"
+        class="text-white p-3 bg-amber-700"
+      >
+        Prev Album
+      </a>
+      <% } %>
+      <a
+        href="/artist/show/<%= id %>?offset=<%= albums.offset + albums.limit %>"
+        class="text-white p-3 bg-amber-700"
+      >
+        Next Album
+      </a>
+    </div>
+  </div>
 </div>
