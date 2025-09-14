@@ -135,7 +135,6 @@ app.get('/artist/show/:id', async (req, res) => {
 });
 
 
-
 // Search artist api
 app.get('/api/artist/search', async (req, res) => {
 	const artistName = req.query.name;

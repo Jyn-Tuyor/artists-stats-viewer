@@ -1,84 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-*::before, *::after, * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-body {
-	background-color: #282928;
-/*	background-image: url('./assets/images/bg.png');*/
-object-fit: cover;
-background-size: cover;
-}
-
 * {
-    font-family: 'Poppins';
+    font-family: 'Courier New', Courier, monospace;
+}
+main {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/images/bg.jpg");
+  /* background-position: center; */
+    background-repeat: repeat-y;
+    background-size: cover;
+    position: relative;
+    height: 100vh;
 }
 
-.nav {
-	padding: 1.2rem;
-	border-radius: 22px;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-    position: relative; /* Ensure the pseudo-element is positioned relative to the nav */
-}
-
-.nav::after {
-    content: '';
-    filter: blur(10px);
-    position: absolute; /* Position the pseudo-element inside the nav */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.2); /* Adjust the blur effect background if needed */
-}
-
-input {
-    background-color: rgba(255, 255, 255, 0.2); /* Transparent white background */
-    border: 1px solid #ebdbb2; /* Optional: border to make it visible */
-    color: #ebdbb2; /* Text color */
-    border-radius: 5px;
-    backdrop-filter: blur(5px); /* Apply blur effect to the background */
-    outline: none; /* Remove the outline */
-    transition: .2s ease;
-}
-
-input::placeholder {
-    color: #ebdbb2; /* Text color */
-}
-
-input:focus {
-    border: 2px solid #ebdbb2; 
-    background-color: rgba(255, 255, 255, 0.2); /* Transparent white backgrou
-input:hover {
-    border: 2px solid #ebdbb2; /* Optional: border to make it visible */
-}
-
-.album-button {
-  background-color: #98971a;
-  color: #ebdbb2;
-  padding: 5px 10px;
-  border: none;
-  border-radius: 2px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: .2s;
-}
-
-.album-button:hover {
-    opacity: .8;
-    background-color: #b8bb26;
-}
-.swiper {
-    width: 600px;
-    height: fit-content;
-}
-.swiper-slide {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    background-color: #1d2021;
-    padding: 12px;
+.container {
+    background-image: linear-gradient(90deg, silver, #d2d2d2, silver);
 }

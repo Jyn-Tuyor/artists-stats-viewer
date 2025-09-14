@@ -1,5 +1,5 @@
-<div class='flex flex-col gap-4 p-4'>
-    <div class='m-auto text-white flex flex-col items-center'>
+<div class="flex flex-col gap-4 p-4">
+  <!-- <div class='m-auto text-white flex flex-col items-center'>
         <form id='search-form' action='/artists/search' class='mb-4'>
             <div class="w-full max-w-sm min-w-[200px] flex flex-row gap-2">
                 <input name='name' id='artist-name' class="w-full bg-transparent text-sm rounded-md px-3 py-2 transition duration-300 ease focus:outline-none shadow-sm focus:shadow" placeholder="Search artist...">
@@ -12,33 +12,54 @@
                 <%= query %></strong></span>
         <span class='text-sm'>Total: <strong class=''>
                 <%= artists.total %></strong></span>
-    </div>
-    <div class='flex-grow '>
-        <div class='flex flex-col gap-2 p-12'>
-            <% artists.items.forEach(artist => { %>
-            <div class='flex flex-row p-4' style='background-color:#3c3836;'>
-                <img src="<%= artist.images[0]?.url %>" alt="<%= artist.name %>" class="artist-image rounded-md w-[100px] h-[100px] object-cover">
-                <div class="artist-card flex items-center p-4 mb-4 shadow-sm">
-                    <div class="flex-1">
-                        <h2 class="text-xl mb-4 text-[#ebdbb2]">
-                            <%= artist.name %>
-                        </h2>
-                        <a href="/artist/show/<%= artist.id %>" class="album-button">View</a>
-                    </div>
-                </div>
-               </div>
-                <% }); %>
-                <!-- Pagination -->
-                <div class='flex flex-row gap-2'>
-                    <% if (artists.previous) { %>
-                    <a href="/artists/search?name=<%= query %>&offset=<%= artists.offset - artists.limit %>&limit=10" class='text-white p-3' style='background-color:#3c3836;'>
-                        Prev
-                    </a>
-                    <% } %>
-                    <a href="/artists/search?name=<%= query %>&offset=<%= artists.offset + artists.limit %>&limit=10" class='text-white p-3' style='background-color:#3c3836;'>
-                        Next
-                    </a>
-                </div>
+    </div> -->
+  <div class="">
+    <div class="flex flex-row flex-wrap gap-2 p-12">
+      <% artists.items.forEach(artist => { %>
+      <!-- CARD -->
+      <a href="/artist/show/<%= artist.id %>">
+        <div
+          class="flex flex-row p-2 bg-gray-200 hover:shadow-sm cursor-pointer"
+        >
+          <img
+            src="<%= artist.images[0]?.url %>"
+            alt="<%= artist.name %>"
+            class="w-[100px] h-[100px] object-cover"
+          />
+          <div class="flex items-center p-4 mb-4">
+            <div class="flex-1">
+              <h4 class="text-lg font-bold mb-4 text-[#282828]">
+                <%= artist.name %>
+              </h4>
             </div>
+          </div>
         </div>
+      </a>
+      <!-- END CARD -->
+
+      <% }); %>
+    
     </div>
+
+      <!-- Pagination -->
+      <div class="flex flex-row gap-2">
+        <% if (artists.previous) { %>
+        <a
+          href="/artists/search?name=<%= query %>&offset=<%= artists.offset - artists.limit %>&limit=10"
+          class="text-white p-3"
+          style="background-color: #3c3836"
+        >
+          Prev
+        </a>
+        <% } %>
+        <a
+          href="/artists/search?name=<%= query %>&offset=<%= artists.offset + artists.limit %>&limit=10"
+          class="text-white p-3"
+          style="background-color: #3c3836"
+        >
+          Next
+        </a>
+      </div>
+      <!-- end pagination -->
+  </div>
+</div>

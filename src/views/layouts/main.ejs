@@ -1,38 +1,62 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/output.css" rel="stylesheet">
-    <link href="/custom.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Swiper JS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-</head>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/custom.css" />
+  </head>
 
-<body>
+  <body class="bg-[#] text-sm">
     <!-- Header -->
-    <header>
+    <!-- <header>
         <div class="container mx-auto">
             <nav class="flex justify-between items-center p-4">
-                <a href="/" class="text-white font-bold">Artist Explorer</a>
                 <ul class="flex space-x-4">
                     <li>
-                        <a href="https://github.com/jinnn888">
+                        <a href="https://github.com/douwjyn">
                             <img src="/images/github-mark-white.png" alt="GitHub" class="w-[22px]">
                         </a>
                     </li>
                 </ul>
             </nav>
         </div>
-    </header>
+    </header> -->
     <!-- End of Header -->
     <!-- Main Content -->
-    <main class=''>
-        <%- body  %>
+    <main class="bg-[#fbf1c7] p-12">
+      <div class="container p-6 bg-silver hover:shadow-sm border border-4 border-slate-800 shadow-lg">
+        <div class="flex items-center">
+          <h1 class="text-lg font-bold text-[#282828] block">
+            Search them artists u like!
+          </h1>
+          <!-- <img src="/images/L.jpg" alt="" class="w-[130px]" /> -->
+        </div>
+        <form id="search-form" action="/artists/search">
+          <div class="flex items-center justify-center">
+            <div class="">
+              <input
+                name="name"
+                id="artist-name"
+                class="p-2 rounded-sm focus:shadow-sm outline-none bg-gray-200"
+                placeholder="Search artist..."
+              />
+              <button
+                type="submit"
+                class="bg-amber-700 text-white py-2 px-4 shadow-sm"
+              >
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+        <%- body %>
+      </div>
     </main>
-    <script type="module">
+    <!-- <script type="module">
         import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
 
         const swiper = new Swiper('.swiper', {
@@ -56,7 +80,6 @@
             },
 
         })
-    </script>
-</body>
-
+    </script> -->
+  </body>
 </html>
